@@ -65,6 +65,7 @@ sys_dup(void)
   return fd;
 }
 
+// Look through this
 uint64
 sys_read(void)
 {
@@ -501,5 +502,26 @@ sys_pipe(void)
     fileclose(wf);
     return -1;
   }
+  return 0;
+}
+
+// setColor
+uint64
+sys_setColor(void)
+{
+  return 0;
+}
+
+// setTickets
+uint64
+sys_setTickets(void)
+{
+  return 0;
+}
+
+// getpinfo
+uint64
+sys_getpinfo(void)
+{
   return 0;
 }

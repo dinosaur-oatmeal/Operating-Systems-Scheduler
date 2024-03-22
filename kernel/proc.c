@@ -434,6 +434,23 @@ wait(uint64 addr)
   }
 }
 
+// pseudo-random number generator (not my code)
+unsigned int s_iSeed;
+
+void srand(unsigned int seed)
+{
+  s_iSeed = seed;
+}
+
+unsigned int rand()
+{
+  s_iSeed ^= s_iSeed << 13;
+  s_iSeed ^= s_iSeed >> 17;
+  s_iSeed ^= s_iSeed << 5;
+  return s_iSeed;
+}
+// end of pseudo-random number generator
+
 // Per-CPU process scheduler.
 // Each CPU calls scheduler() after setting itself up.
 // Scheduler never returns.  It loops, doing:
@@ -455,6 +472,8 @@ scheduler(void)
     for(p = proc; p < &proc[NPROC]; p++) {
       acquire(&p->lock);
       if(p->state == RUNNABLE) {
+        // change code in this loop
+
         // Switch to chosen process.  It is the process's job
         // to release its lock and then reacquire it
         // before jumping back to us.
