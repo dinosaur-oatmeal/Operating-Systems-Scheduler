@@ -463,7 +463,7 @@ scheduler(void)
 {
   struct proc *p;
   struct cpu *c = mycpu();
-  
+  srand(1);
   c->proc = 0;
   for(;;){
     // Avoid deadlock by ensuring that devices can interrupt.

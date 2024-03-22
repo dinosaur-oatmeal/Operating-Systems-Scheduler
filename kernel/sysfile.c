@@ -504,24 +504,3 @@ sys_pipe(void)
   }
   return 0;
 }
-
-// setColor
-uint64
-sys_setColor(void)
-{
-  return 0;
-}
-
-// setTickets
-uint64
-sys_setTickets(void)
-{
-  return 0;
-}
-
-// getpinfo
-uint64
-sys_getpinfo(void)
-{
-  return 0;
-}
