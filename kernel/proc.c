@@ -5,6 +5,7 @@
 #include "spinlock.h"
 #include "proc.h"
 #include "defs.h"
+#include "pstat.h"
 
 struct cpu cpus[NCPU];
 
@@ -434,7 +435,7 @@ wait(uint64 addr)
   }
 }
 
-// pseudo-random number generator (not my code)
+// pseudo-random number generator (code from class)
 unsigned int s_iSeed;
 
 void srand(unsigned int seed)
@@ -451,6 +452,20 @@ unsigned int rand()
 }
 // end of pseudo-random number generator
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Per-CPU process scheduler.
 // Each CPU calls scheduler() after setting itself up.
 // Scheduler never returns.  It loops, doing:
@@ -463,12 +478,14 @@ scheduler(void)
 {
   struct proc *p;
   struct cpu *c = mycpu();
+  // set seed to 1
   srand(1);
   c->proc = 0;
   for(;;){
     // Avoid deadlock by ensuring that devices can interrupt.
     intr_on();
 
+    //uint random = rand();
     for(p = proc; p < &proc[NPROC]; p++) {
       acquire(&p->lock);
       if(p->state == RUNNABLE) {

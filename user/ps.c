@@ -9,6 +9,7 @@
 int
 main(void)
 {
-  printf("hello world\n");
+  printf("NAME     PID     STATUS     COLOR     TICKETS");
+  printf("\n");
   exit(0);
 }
