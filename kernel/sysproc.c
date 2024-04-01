@@ -89,3 +89,25 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+// setColor
+uint64
+sys_setColor(enum COLOR color)
+{
+
+  return -1;
+}
+
+// setTickets
+uint64
+sys_setTickets(int tickets)
+{
+  return -1;
+}
+
+// getpinfo
+uint64
+sys_getpinfo(struct pstat * stats)
+{
+  return -1;
+}

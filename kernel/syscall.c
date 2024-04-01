@@ -155,25 +155,3 @@ syscall(void)
     p->trapframe->a0 = -1;
   }
 }
-
-// setColor
-uint64
-sys_setColor(void)
-{
-
-  return -1;
-}
-
-// setTickets
-uint64
-sys_setTickets(void)
-{
-  return -1;
-}
-
-// getpinfo
-uint64
-sys_getpinfo(void)
-{
-  return -1;
-}

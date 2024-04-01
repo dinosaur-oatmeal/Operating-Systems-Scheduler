@@ -81,9 +81,6 @@ struct trapframe {
 
 enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
-// added COLOR enum
-enum COLOR {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET};
-
 // Per-process state
 struct proc {
   struct spinlock lock;
