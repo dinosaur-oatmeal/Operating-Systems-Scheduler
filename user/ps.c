@@ -4,12 +4,20 @@
 #include "kernel/stat.h"
 #include "user/user.h"
 
-#include <stdarg.h>
+enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
+enum COLOR { RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET };
 
-int
-main(void)
+#include "kernel/pstat.h"
+
+int main(void)
 {
-  printf("NAME     PID     STATUS     COLOR     TICKETS");
+  struct pstat structure;
+  getpinfo(&structure);
+  printf("NAME     PID     STATUS     COLOR     TICKETS\n");
   printf("\n");
+  for(int i=0; i<NPROC; i++)
+  {
+
+  }
   exit(0);
 }

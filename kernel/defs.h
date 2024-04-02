@@ -9,6 +9,10 @@ struct sleeplock;
 struct stat;
 struct superblock;
 
+// added structure and enum
+struct pstat;
+enum COLOR;
+
 // bio.c
 void            binit(void);
 struct buf*     bread(uint, uint);
@@ -107,6 +111,11 @@ int             either_copyout(int user_dst, uint64 dst, void *src, uint64 len);
 int             either_copyin(void *dst, int user_src, uint64 src, uint64 len);
 void            procdump(void);
 
+// added by me
+int             setColor(enum COLOR);
+int             setTickets(int);
+int             getpinfo(struct pstat *);
+
 // swtch.S
 void            swtch(struct context*, struct context*);
 
@@ -139,8 +148,9 @@ int             argstr(int, char*, int);
 void            argaddr(int, uint64 *);
 int             fetchstr(uint64, char*, int);
 int             fetchaddr(uint64, uint64*);
+
 // added COLOR enum
-enum COLOR {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET};
+enum            COLOR {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET};
 void            syscall();
 
 // trap.c

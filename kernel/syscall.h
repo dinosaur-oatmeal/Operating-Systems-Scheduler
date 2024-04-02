@@ -22,7 +22,6 @@
 #define SYS_close  21
 
 //added calls by me
-#define SYS_setColor 22
-#define SYS_setTickets 23
+#define SYS_setcolor 22
+#define SYS_settickets 23
 #define SYS_getpinfo 24
-#define SYS_ps 25

@@ -103,8 +103,8 @@ extern uint64 sys_mkdir(void);
 extern uint64 sys_close(void);
 
 // added calls by me
-extern uint64 sys_setColor(void);
-extern uint64 sys_setTickets(void);
+extern uint64 sys_setcolor(void);
+extern uint64 sys_settickets(void);
 extern uint64 sys_getpinfo(void);
 
 // An array mapping syscall numbers from syscall.h
@@ -133,9 +133,9 @@ static uint64 (*syscalls[])(void) = {
 [SYS_close]   sys_close,
 
 // added calls by me
-[SYS_setColor] sys_setColor,
-[SYS_setTickets] sys_setTickets,
-[SYS_getpinfo] sys_getpinfo
+[SYS_setcolor] sys_setcolor,
+[SYS_settickets] sys_settickets,
+[SYS_getpinfo] sys_getpinfo,
 };
 
 void

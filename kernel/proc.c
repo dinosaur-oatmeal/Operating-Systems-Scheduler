@@ -6,6 +6,7 @@
 #include "proc.h"
 #include "defs.h"
 #include "pstat.h"
+#include <stddef.h>
 
 struct cpu cpus[NCPU];
 
@@ -716,4 +717,30 @@ procdump(void)
     printf("%d %s %s", p->pid, state, p->name);
     printf("\n");
   }
+}
+
+// setColor
+int setColor(enum COLOR color)
+{
+  return 0;
+}
+
+int setTickets(int tickets)
+{
+  return 0;
+}
+
+int getpinfo(struct pstat * structure)
+{
+  // see if pointer is null
+  if(structure == NULL)
+  {
+    return -1;
+  }
+
+  for(int i = 0; i < NPROC; i++)
+  {
+    structure->pid[i] = proc[i].pid;
+  }
+  return 0;
 }

@@ -5,6 +5,7 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
+#include "pstat.h"
 
 uint64
 sys_exit(void)
@@ -90,24 +91,36 @@ sys_uptime(void)
   return xticks;
 }
 
-// setColor
+// setcolor system call
 uint64
-sys_setColor(enum COLOR color)
+sys_setcolor(void)
 {
+  int color;
+  argint(0, &color);
 
-  return -1;
+  return setColor((enum COLOR) color);
 }
 
-// setTickets
+
+// settickets system call
 uint64
-sys_setTickets(int tickets)
+sys_settickets(void)
 {
-  return -1;
+  int tickets;
+  argint(0, &tickets);
+
+  return setTickets(tickets);
 }
 
-// getpinfo
+// getpinfo system call
 uint64
-sys_getpinfo(struct pstat * stats)
+sys_getpinfo(void)
 {
-  return -1;
+  uint64 n;
+  argaddr(0, &n);
+
+  struct pstat information;
+  getpinfo(&information);
+
+  return either_copyout(1, n, &information, sizeof(information));
 }

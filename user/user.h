@@ -1,5 +1,9 @@
 struct stat;
 
+// added structure and enum
+struct pstat;
+enum COLOR;
+
 // system calls
 int fork(void);
 int exit(int) __attribute__((noreturn));
@@ -22,6 +26,11 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+
+// added by me
+int setColor(enum COLOR);
+int setTickets(int);
+int getpinfo(struct pstat *);
 
 // ulib.c
 int stat(const char*, struct stat*);
