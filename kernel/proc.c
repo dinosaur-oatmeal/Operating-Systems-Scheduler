@@ -722,11 +722,42 @@ procdump(void)
 // setColor
 int setColor(enum COLOR color)
 {
+  struct pstat * structure;
+
+  switch(color)
+  {
+    case 0:
+      structure->color[NPROC] = RED;
+      break;
+    case 1:
+      structure->color[NPROC] = ORANGE;
+      break;
+    case 2:
+      structure->color[NPROC] = YELLOW;
+      break;
+    case 3:
+      structure->color[NPROC] = GREEN;
+      break;
+    case 4:
+      structure->color[NPROC] = BLUE;
+      break;
+    case 5:
+      structure->color[NPROC] = INDIGO;
+      break;
+    case 6:
+      structure->color[NPROC] = VIOLET;
+      break;
+    default:
+      return -1;
+  }
+
   return 0;
 }
 
 int setTickets(int tickets)
 {
+  // get parent pid and tickets it has
+  // store tickets from ppid + 1 in pstat
   return 0;
 }
 
@@ -738,9 +769,14 @@ int getpinfo(struct pstat * structure)
     return -1;
   }
 
+  // loop through structure
   for(int i = 0; i < NPROC; i++)
   {
+    safestrcpy(structure->name[i], proc[i].name, sizeof(proc[i].name));
     structure->pid[i] = proc[i].pid;
+    structure->state[i] = proc[i].state;
+    structure->color[i] = setColor(YELLOW);
   }
+
   return 0;
 }
