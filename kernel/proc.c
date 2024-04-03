@@ -126,6 +126,8 @@ allocproc(void)
 found:
   p->pid = allocpid();
   p->state = USED;
+  p->tickets = 1;
+  p->color = INDIGO;
 
   // Allocate a trapframe page.
   if((p->trapframe = (struct trapframe *)kalloc()) == 0){
@@ -318,6 +320,7 @@ fork(void)
 
   acquire(&wait_lock);
   np->parent = p;
+  np->tickets = np->parent->tickets;
   release(&wait_lock);
 
   acquire(&np->lock);
@@ -722,30 +725,28 @@ procdump(void)
 // setColor
 int setColor(enum COLOR color)
 {
-  struct pstat * structure;
-
   switch(color)
   {
     case 0:
-      structure->color[NPROC] = RED;
+      myproc()->color = RED;
       break;
     case 1:
-      structure->color[NPROC] = ORANGE;
+      myproc()->color = ORANGE;
       break;
     case 2:
-      structure->color[NPROC] = YELLOW;
+      myproc()->color = YELLOW;
       break;
     case 3:
-      structure->color[NPROC] = GREEN;
+      myproc()->color = GREEN;
       break;
     case 4:
-      structure->color[NPROC] = BLUE;
+      myproc()->color = BLUE;
       break;
     case 5:
-      structure->color[NPROC] = INDIGO;
+      myproc()->color = INDIGO;
       break;
     case 6:
-      structure->color[NPROC] = VIOLET;
+      myproc()->color = VIOLET;
       break;
     default:
       return -1;
@@ -758,6 +759,7 @@ int setTickets(int tickets)
 {
   // get parent pid and tickets it has
   // store tickets from ppid + 1 in pstat
+
   return 0;
 }
 
@@ -775,7 +777,8 @@ int getpinfo(struct pstat * structure)
     safestrcpy(structure->name[i], proc[i].name, sizeof(proc[i].name));
     structure->pid[i] = proc[i].pid;
     structure->state[i] = proc[i].state;
-    structure->color[i] = setColor(YELLOW);
+    structure->color[i] = proc[i].color;
+    structure->tickets[i] = proc[i].tickets;
   }
 
   return 0;

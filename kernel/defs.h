@@ -150,7 +150,11 @@ int             fetchstr(uint64, char*, int);
 int             fetchaddr(uint64, uint64*);
 
 // added COLOR enum
-enum            COLOR {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET};
+#ifndef __COLOR__
+#define __COLOR__
+enum COLOR {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET};
+#endif
+
 void            syscall();
 
 // trap.c
