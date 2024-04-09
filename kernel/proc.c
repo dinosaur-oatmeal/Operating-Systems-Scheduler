@@ -286,6 +286,7 @@ fork(void)
   int i, pid;
   struct proc *np;
   struct proc *p = myproc();
+  setTickets(p->tickets);
 
   // Allocate process.
   if((np = allocproc()) == 0){
@@ -757,10 +758,13 @@ int setColor(enum COLOR color)
 
 int setTickets(int tickets)
 {
-  // get parent pid and tickets it has
-  // store tickets from ppid + 1 in pstat
+  if(tickets >= 1 || tickets <= 256)
+  {
+    myproc()->tickets = tickets;
+    return 0;
+  }
 
-  return 0;
+  return -1;
 }
 
 int getpinfo(struct pstat * structure)

@@ -28,8 +28,8 @@ int sleep(int);
 int uptime(void);
 
 // added by me
-int setColor(enum COLOR);
-int setTickets(int);
+int setcolor(enum COLOR);
+int settickets(int);
 int getpinfo(struct pstat *);
 
 // ulib.c

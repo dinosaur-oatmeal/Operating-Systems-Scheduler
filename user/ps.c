@@ -12,6 +12,7 @@ enum COLOR { RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET };
 int main(void)
 {
   struct pstat structure;
+  setcolor(YELLOW);
   getpinfo(&structure);
 
   printf("NAME    PID     STATUS          COLOR           TICKETS\n");
